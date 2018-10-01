@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script>
+
+    document.onmousemove = function(event){
+        event = window.event;
+
+        var mouseX = (event.pageX/$(window).width()) * 100;
+        var mouseY = (event.pageY/$(window).height()) * 100;
+
+        console.log("MouseX: " + mouseX + " | MouseY: " + mouseY);
+
+    }
+
+</script>
+
+</html>
