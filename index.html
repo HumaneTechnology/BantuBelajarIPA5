@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="jquery.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery-ui.js"></script>
+
+<div id="cursor"></div>
+<div style="position: absolute; left: 52.20%; width: 0.5%; height: 30%; background-color: #d11f1f; top: 26%;"></div>
+
+<div id="positionback"></div>
+
 <script>
 
     document.onmousemove = function(event){
         event = window.event;
 
-        var mouseX = (event.pageX/$(window).width()) * 100;
-        var mouseY = (event.pageY/$(window).height()) * 100;
+        var mouseX = event.pageX;
+        var mouseY = event.pageY;
 
-        console.log("MouseX: " + mouseX + " | MouseY: " + mouseY);
+        console.log("MouseX: " + mouseX + "% | MouseY: " + mouseY +"%");
+        
+        $("#cursor").css({
+            "top": mouseY - $("#cursor").height()/2,
+            "left": mouseX - $("#cursor").width()/2
+        })
 
+        $("#positionback").css({
+            "left": mouseX
+        })
     }
 
 </script>
+
+<style>
+    html {
+       
+    }
+    
+    #cursor {
+        position: absolute; 
+        height: 10%; 
+        width: 5%; 
+        background-image: url(image1.png); 
+        cursor: hidden; 
+        background-size: cover; 
+        background-size: contain;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        left: 50%;
+        top: 50%;
+    }
+
+    #positionback {
+        position: absolute;
+        height: 1.5%;
+        width: .75%;
+        background-color: #000;
+        border-bottom: 50%;        
+    }
+</style>
 
 </html>
