@@ -1,222 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="jquery.js"></script>
-<script src="jquery-ui.min.js"></script>
-<script src="jquery-ui.js"></script>
+<div id="level-transition-cover">
+</div>
 
+<div id="level-transition-menu">
+    <h1 style="position: relative; font-size: 350%; top: -35%;">Sukses!</h1>
+    <h2 style="position: relative; left: 5%; top: -35%;">Anda berhasil melewati level 1!</h2>
+    <h3 style="position: relative; left: 5%; top: -38%;">Laporan tingkat:</h3>
+
+    <div style="position: relative; height: 40%; width: 86%; background-color: #fff; top: -40%; left: 5%; padding-top: 2%; color: #000; padding-left: 2%; padding-right: 2%;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat mi sit amet consectetur posuere. Mauris accumsan lorem et nisi bibendum, quis mollis justo rhoncus. Nam nec ante nec magna aliquam sodales ac quis mi. Nam sagittis ac nulla in iaculis. Aenean blandit efficitur erat id semper. Praesent dignissim consequat libero, quis rhoncus urna. Suspendisse sed condimentum justo. Maecenas a mi ut orci accumsan tristique ut a nulla.
+    </div>
+
+    <div style="position: relative; height: 13%; width: 20%; background-color: #0e5105; top: -35%; font-size: 100%; padding-top: 1%; padding-left: 1%; border-radius: 4%; border: 0.1em solid #90cc72; border-style: dashed; left: 5%;">Level Berikutnya >></div>
+
+</div>
+
+<!-- Level 1 container-->
 <div id="master-container">
     <div id="cursor"></div>
     <div id="positionback"></div>
     <div id="laserbeam"></div>
-    <div id="off_button" class="transition"></div>
     <div class="target transition" id="target1"></div>
+    <div class="target transition" id="target2"></div>
+    <div class="target transition" id="target3"></div>
+    <h1 style="position: fixed; font-size: 400%; left: 2%; top: 80%;" id="scoreboard_level1">Skor: 0</h1>
+    <h1 style="position: fixed; font-size: 250%; left: 85%; top: 85%;"">Level 1</h1>
+
+    <div id="wooden-block" class="cover"></div>
+    <div id="glass-block" class="cover"></div>
+    <div id="mirror-block" class="cover"></div>
 </div>
 
-<script>
+<div id="level2-container">
+</div>
 
-    var isOn = false;
-    var visibility = "hidden";
-    var global_mousepos = 0;
+<script src="jquery.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery-ui.js"></script>
 
-    document.getElementById("master-container").onmousemove = function(event){
-        event = window.event;
+<script src="global-functions.js"></script>
 
-        var mouseX = event.pageX;
-        var mouseY = event.pageY;
-
-        if (isOn) global_mousepos = mouseY;
-
-        console.log("MouseX: " + mouseX + "% | MouseY: " + mouseY +"%");
-        
-        $("#cursor").css({
-            "top": mouseY - $("#cursor").height()/2,
-            "left": mouseX - $("#cursor").width()/2,
-            "visibility": "visible"
-        });
-
-        $("#positionback").css({
-            "visibility": "visible",
-            "top": mouseY - $("#positionback").height()/2,
-            "left": mouseX - 6
-        });
-
-        $("#laserbeam").css({
-            "visibility": visibility,
-            "top": mouseY - $("#positionback").height()/2,
-            "left": mouseX + 8
-        });
-    }
-
-    document.getElementById("off_button").onclick = function(){
-        isOn = !isOn;
-
-        console.log(isOn);
-
-        var isOn_doc = document.getElementById("off_button");
-
-        if (isOn){
-            visibility = "visible";
-        } else {
-            visibility = "hidden";
-            $("#laserbeam").css({
-                "visibility": "hidden"
-            });
-        } 
-
-        (isOn) ? isOn_doc.style.backgroundColor = "#fff" : isOn_doc.style.backgroundColor = "#820202";
-    }
-
-    function flipOut(id){
-
-        $(id).css({
-            "transform-style": "preserve-3d",
-          	"transform": "rotateY(-90deg)"
-        })
-
-    }
-
-    var already_hit = [];
-
-    setInterval(function(){
-
-        var maximum = 0;
-
-        for (var i = 1; i < 2; i++){
-
-            for (var b = 0; b < already_hit.length; b++){
-
-                console.log(already_hit[b]);
-                if (already_hit[b] == target_top){
-                    console.log("Target already hit");
-                    return;
-                }
-
-            }
-
-            var target_top = $("#target"+i).position().top;
-            var target = document.getElementById("target" + i);
-            var target_bottom = target_top + $("#target"+i).height();
-
-            console.log("Top:" + target_top + " bottom:"+target_bottom + " mouse:"+global_mousepos);
-
-           if (between(global_mousepos, target_top, target_bottom)){
-                console.log("you hit the target!");
-                flipOut("#target"+i);
-                already_hit.push(target_top);
-                return;
-            }
-
-        }
-
-    });
-
-function between(x, min, max) {
-  return x >= min && x <= max;
-}
-
-</script>
+<script src="scripts/level1.js"></script>
+<link rel="stylesheet" href="styles/level1/level1.css">
 
 <style>
-    html {
-        cursor: none;
-    }
-    
-    #cursor {
-        position: fixed; 
-        height: 15%; 
-        width: 10%; 
-        background-image: url(image1.png); 
-        cursor: hidden; 
-        background-size: cover; 
-        background-size: contain;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 92%;
-        left: 50%;
-        top: 50%;
-        transform: rotate(90deg);
-        visibility: hidden;
-    }
 
-    #positionback {
-        position: fixed;
-        height: 1.5%;
-        width: .75%;
-        border-bottom: 50%;    
-        left: 95%;
-        background-color: #d11f1f;
-        visibility: hidden;
-        border-radius: 50%;
-    }
-
-    #laserbeam {
-        position: fixed;
-        height: 1.5%;
-        width: 200%;
-        border-bottom: 50%;    
-        left: 95%;
-        background-color: #d11f1f;
-        visibility: hidden;
-        border-radius: 50%;
-    }
-
-    #off_button {
-        position: fixed;
-        height: 15%; 
-        width: 20%;
-        left: 40%;
-        top: 80%;
-        background-color: #820202;
-        border-radius: 3%;
-        padding-top: 1%;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-
-    #target1 {
-        left: 88%;
-        top: 10%;
+    @font-face {
+        font-family: "VT323";
+        src: url("VT323-Regular.ttf");
     }
 
     #master-container {
+        cursor: none;
+        color: #fff;
+        font-family: VT323;
+    }
+
+    #level2-container {
         position: fixed;
         height: 100%;
         width: 100%;
+        display: none;
         top: 0%;
         left: 0%;
-        background-image: url(Untitled-3.jpg);
-    }
-    
-    .transition {
-		-webkit-transition: all .2s ease;
-		-moz-transition: all .2s ease;
-		-o-transition: all .2s ease;
-		-ms-transition: all .2 ease;
-        transition: all .2s ease;
     }
 
-    .target {
-        position: relative; 
-        height: 20%; 
-        width: 12%;
-        background-image: url(target_PNG65.png);
-        background-size: cover; 
-        background-size: contain;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: -1%;
-        background-size: 90%;
-        transform-style: preserve-3d;
-        transforM: rotateY(-70deg);
-        z-index: -1;
+    #level-transition-cover {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0%;
+        top: 0%;
+        z-index: 980;
+        background-color: #000;
+        opacity: 0.7;
+        display: none;
     }
+
+    #level-transition-menu {
+        position: fixed;
+        left: 20%;
+        top: 25%;
+        height: 55%;
+        width: 50%;
+        background-color: #6c9e58;
+        color: #fff;
+        z-index: 999;
+        font-family: VT323;
+        display: none;
+    }
+
 </style>
+
+<script>
+
+    function newLevel(from, to){
+
+       var audio = new Audio("complete.mp3");
+       audio.play();
+
+       setTimeout(function(){
+           $("#level-transition-menu").fadeIn(0);
+           $("#level-transition-cover").fadeIn(0);
+       }, 2800);
+
+    }
+
+</script>
 
 </html>

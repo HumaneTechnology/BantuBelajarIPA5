@@ -1,0 +1,27 @@
+{
+  "name": "matata",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HumaneTechnology/BantuBelajarIPA5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HumaneTechnology/BantuBelajarIPA5/issues"
+  },
+  "homepage": "https://github.com/HumaneTechnology/BantuBelajarIPA5#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "generator-ionic": "^0.8.0",
+    "socket.io": "^2.1.1",
+    "yo": "^2.0.5"
+  },
+  "devDependencies": {},
+  "description": ""
+}
