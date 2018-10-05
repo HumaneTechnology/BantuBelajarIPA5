@@ -6,14 +6,13 @@
 
 <div id="level-transition-menu">
     <h1 style="position: relative; font-size: 350%; top: -35%;">Sukses!</h1>
-    <h2 style="position: relative; left: 5%; top: -35%;">Anda berhasil melewati level 1!</h2>
+    <h2 style="position: relative; left: 5%; top: -35%;" id="level_text">Anda berhasil melewati level 1!</h2>
     <h3 style="position: relative; left: 5%; top: -38%;">Laporan tingkat:</h3>
 
-    <div style="position: relative; height: 40%; width: 86%; background-color: #fff; top: -40%; left: 5%; padding-top: 2%; color: #000; padding-left: 2%; padding-right: 2%;">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat mi sit amet consectetur posuere. Mauris accumsan lorem et nisi bibendum, quis mollis justo rhoncus. Nam nec ante nec magna aliquam sodales ac quis mi. Nam sagittis ac nulla in iaculis. Aenean blandit efficitur erat id semper. Praesent dignissim consequat libero, quis rhoncus urna. Suspendisse sed condimentum justo. Maecenas a mi ut orci accumsan tristique ut a nulla.
+    <div style="position: relative; height: 40%; width: 86%; background-color: #fff; top: -40%; left: 5%; padding-top: 2%; color: #000; padding-left: 2%; padding-right: 2%; font-size: 95%;" id="level-report">
     </div>
 
-    <div style="position: relative; height: 13%; width: 20%; background-color: #0e5105; top: -35%; font-size: 100%; padding-top: 1%; padding-left: 1%; border-radius: 4%; border: 0.1em solid #90cc72; border-style: dashed; left: 5%;">Level Berikutnya >></div>
+    <div id="next-level-button" style="position: relative; height: 13%; width: 20%; cursor: pointer; background-color: #0e5105; top: -35%; font-size: 100%; padding-top: 1%; padding-left: 1%; border-radius: 4%; border: 0.1em solid #90cc72; border-style: dashed; left: 5%;">Level Berikutnya >></div>
 
 </div>
 
@@ -28,22 +27,54 @@
     <h1 style="position: fixed; font-size: 400%; left: 2%; top: 80%;" id="scoreboard_level1">Skor: 0</h1>
     <h1 style="position: fixed; font-size: 250%; left: 85%; top: 85%;"">Level 1</h1>
 
-    <div id="wooden-block" class="cover"></div>
-    <div id="glass-block" class="cover"></div>
-    <div id="mirror-block" class="cover"></div>
+    <div id="wooden-block" class="cover">
+        <div class="block-text transition">
+            <h1>Kayu</h1>
+        </div>
+    </div>
+    <div id="glass-block" class="cover">
+        <div class="block-text transition">
+            <h1>Kaca</h1>
+        </div>      
+    </div>
+    <div id="mirror-block" class="cover">
+        <div class="block-text transition">
+            <h1>Logam</h1>
+        </div>
+    </div>
+
 </div>
 
 <div id="level2-container">
+    <div class="level2-blocks cover" id="diamond" style="background-image: url(styles/level2/diamond.jpg);">
+        <h1>Berlian</h1>
+    </div>   
+    <div class="level2-blocks cover" id="oil" style="background-image: url(styles/level2/oil.jpg); left: 22%;">
+        <h1>Minyak</h1>
+    </div> 
+    <div class="level2-blocks cover" id="water" style="background-image: url(styles/level2/water.jpg); left: 39%;">
+        <h1>Air</h1>
+    </div>   
+    <div id="level2-laser" style="position: fixed; left: 30%; height: 75%; width: 70%; background-image: url(styles/level2/Normal.png); top: 5%; transform: rotate(180deg);" class="cover">
+        <div style="position: absolute; height: 50%; width: 33%; left: 25%; top: 17.45%;" id="level2-dropzone"></div>
+    </div>                                       
+
+    <h1 style="position: fixed; color: #fff; font-size: 400%; left: 2%; top: -5%;" id="scoreboard_level2">Skor: 0</h1>
+    
 </div>
 
 <script src="jquery.js"></script>
 <script src="jquery-ui.min.js"></script>
 <script src="jquery-ui.js"></script>
-
+<script src="jquery.ui.touch-punch.min.js"></script>
+        
 <script src="global-functions.js"></script>
-
+<script src="http://d3js.org/d3.v5.min.js"></script>
+        
 <script src="scripts/level1.js"></script>
+<script src="scripts/level2.js"></script>
 <link rel="stylesheet" href="styles/level1/level1.css">
+<link rel="stylesheet" href="styles/level2/level2.css">        
 
 <style>
 
@@ -65,6 +96,8 @@
         display: none;
         top: 0%;
         left: 0%;
+        background-image: url(styles/level1/Untitled-3.jpg);
+        font-family: VT323;
     }
 
     #level-transition-cover {
@@ -96,16 +129,8 @@
 
 <script>
 
-    function newLevel(from, to){
-
-       var audio = new Audio("complete.mp3");
-       audio.play();
-
-       setTimeout(function(){
-           $("#level-transition-menu").fadeIn(0);
-           $("#level-transition-cover").fadeIn(0);
-       }, 2800);
-
+    function playCoin(){
+        new Audio("coin.wav").play();
     }
 
 </script>

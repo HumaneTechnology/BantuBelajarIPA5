@@ -74,9 +74,9 @@
     height: 19%;
     width: 3%;
     top: 32%;
-    left: 19%;
+    left: 19%;  
     background-color: #fff;
-    opacity: 0.2;
+    opacity: 0.4;
 }
 
 #mirror-block {
@@ -85,7 +85,7 @@
     width: 3%;
     top: 54%;
     left: 19%;
-    background-image: url(Silver-Mirror-1.jpg);
+    background-image: url(images.jpg);
 }
 
 #master-container {
@@ -95,6 +95,16 @@
     top: 0%;
     left: 0%;
     background-image: url(Untitled-3.jpg);
+}
+
+.block-text {
+    position: relative;
+    height: 40%;
+    width: 360%;
+    left: 100%;
+    color: #fff !important;
+    padding-left: 70%;
+    opacity: 1 !important;
 }
 
 .transition {
@@ -120,7 +130,7 @@
     background-position: -1%;
     background-size: 90%;
     transform-style: preserve-3d;
-    transforM: rotateY(-70deg);
+    transform: rotateY(-70deg);
     z-index: -1;
 }
 
