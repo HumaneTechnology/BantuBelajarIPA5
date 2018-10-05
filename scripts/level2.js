@@ -20,17 +20,18 @@ $("#level2-dropzone").on("drop", function(event, ui){
     $("#"+element_id).css({
         "position": "fixed",
         "top": "26.727272727272727%",
-        "left": "54.285714285714285%"
+        "left": "58.285714285714285%"
     });
     playCoin();
 
     if (score == 4000) newLevel(2, 3, "Level ini menunjukkan bahwa cahaya <b>dapat dibiaskan</b>. Setiap benda memiliki efek pembiasan yang berbeda; seberapa banyaknya efek ini diukur dengan apa yang disebut <b>indeks pembiasan</b>. Jika sebuah benda memiliki indeks pembiasan besar, maka benda tersebut membelokkan cahaya ke sudut yang lebih kecil, dan sebaliknya. Maka, bisa dilihat bahwa berlian memiliki indeks yang besar karena cahaya dapat dibelokkan kepada sudut yang lebih kecil, diikuti oleh minyak dan air, untuk mencapai target.");
+
 });
 
 function changeSize(){
     $(this).css({
         "height": "41%",
-        "width": "28%"
+        "width": "26%"
     });
 }
 
